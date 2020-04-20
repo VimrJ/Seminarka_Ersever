@@ -14,7 +14,9 @@ import esrever.framework.KeyInput;
 import esrever.framework.ObjektID;
 import esrever.framework.Texture;
 import esrever.objekty.Block;
+import esrever.objekty.Coin;
 import esrever.objekty.Hrac;
+import esrever.objekty.Monster;
 
 public class Hra extends Canvas implements Runnable {								//Hlavní tøída programu
 
@@ -157,7 +159,9 @@ public class Hra extends Canvas implements Runnable {								//Hlavní tøída prog
 				int green = (pixel >> 8) & 0xff;
 				int blue = (pixel) & 0xff;
 				
-				if(red == 255 && green == 255 & blue == 255) handler.addObjekt(new Block(xx*40, yy*40, ObjektID.Block));			//Dìlání z pixelu objekt
+				if(red == 255 && green == 255 & blue == 255) handler.addObjekt(new Block(xx*40, yy*40, ObjektID.Block));
+				if(red == 255 && green == 242 & blue == 0) handler.addObjekt(new Monster(xx*40, yy*40, ObjektID.Monster));
+				if(red == 0 && green == 255 & blue == 0) handler.addObjekt(new Coin(xx*40, yy*40, ObjektID.Coin));					//Dìlání z pixelu objekt
 				if(red == 0 && green == 0 & blue == 255) handler.addObjekt(new Hrac(xx*40, yy*40, handler, ObjektID.Hrac));
 			}
 		}

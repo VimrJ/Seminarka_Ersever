@@ -2,6 +2,7 @@ package esrever.framework;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.geom.Ellipse2D;
 import java.util.LinkedList;
 
 public abstract class HraObjekt {								//Tøída na inicializaci jednotlivých objektù

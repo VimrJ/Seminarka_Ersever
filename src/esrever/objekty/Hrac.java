@@ -5,8 +5,11 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.LinkedList;
 
+import esrever.BufferedImageLoader;
 import esrever.Handler;
 import esrever.Hra;
 import esrever.framework.HraObjekt;
@@ -18,7 +21,11 @@ public class Hrac extends HraObjekt{  //Tøída na Objekt (Hrac)
 	private float width = 30, height=60;
 	private float gravity = 0.55f;
 	private final float MAX_SPEED = 10;
-	private float zivoty=2;
+	private float monsterCount=0;
+	private boolean lives=true;
+	
+	private BufferedImage level=null;
+	private File f;
 	
 	private Handler handler;
 
@@ -41,7 +48,29 @@ public class Hrac extends HraObjekt{  //Tøída na Objekt (Hrac)
 		}
 		
 		Collision(objekt);
-	}
+		
+		if(lives==false) {
+			f=new File("level.png");
+			BufferedImageLoader loader = new BufferedImageLoader();
+			level=loader.loadImage(f);
+			handler.removeObjekt(this);
+				int w = level.getWidth();
+				int h = level.getHeight();
+				
+				for(int xx = 0; xx < h; xx++) {					
+					for(int yy = 0; yy < w; yy++) {
+						int pixel = level.getRGB(xx, yy);
+						int red = (pixel >> 16) & 0xff;
+						int green = (pixel >> 8) & 0xff;
+						int blue = (pixel) & 0xff;
+						if(red == 0 && green == 0 & blue == 255) handler.addObjekt(new Hrac(xx*40, yy*40, handler, ObjektID.Hrac));
+					}
+				}
+				
+			}
+			lives=true;
+		}
+	
 	
 	private void Collision(LinkedList<HraObjekt> objekt) {									//Øešení kolize
 		for(int i = 0; i<handler.objekt.size();i++) {
@@ -84,8 +113,52 @@ public class Hrac extends HraObjekt{  //Tøída na Objekt (Hrac)
 					falling = true;
 				}
 			}
+			if(tempObjekt.getID()==ObjektID.Monster) {
+				
+				if(getBounds().intersects(tempObjekt.getBounds())) {
+					
+					handler.removeObjekt(tempObjekt);
+					monsterCount++;
+					System.out.println(monsterCount);
+				}
+				if(getBoundsTop().intersects(tempObjekt.getBounds())) {
+					
+					handler.removeObjekt(tempObjekt);
+					monsterCount++;
+					System.out.println(monsterCount);
+				}
+				if(getBoundsLeft().intersects(tempObjekt.getBounds())) {
+	
+					handler.removeObjekt(tempObjekt);
+					monsterCount++;
+					System.out.println(monsterCount);
+				}
+				if(getBoundsRight().intersects(tempObjekt.getBounds())) {
+					
+					handler.removeObjekt(tempObjekt);
+					monsterCount++;
+					System.out.println(monsterCount);
+				}
+			
+			}
+			if(tempObjekt.getID()==ObjektID.Coin) {
+				
+				if(getBounds().intersects(tempObjekt.getBounds())) {
+						lives=false;
+				}
+				if(getBoundsTop().intersects(tempObjekt.getBounds())) {
+					lives=false;
+			}
+				if(getBoundsLeft().intersects(tempObjekt.getBounds())) {
+					lives=false;
+			}
+				if(getBoundsRight().intersects(tempObjekt.getBounds())) {
+					lives=false;
+			}
+			}
+			}
 		}
-	}
+	
 
 	public void render(Graphics g) {
 		
