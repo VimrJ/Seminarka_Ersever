@@ -156,7 +156,7 @@ public class Hrac extends HraObjekt{  //Tøída na Objekt (Hrac)
 					lives=false;
 			}
 			}
-			}
+		}
 		}
 	
 
