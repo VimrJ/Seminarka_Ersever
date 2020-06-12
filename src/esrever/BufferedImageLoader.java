@@ -6,13 +6,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class BufferedImageLoader {	//Tøída na nahrávání obrázkù, bohužel nìjak nefunguje a hází null pointer..
+public class BufferedImageLoader {	//Tøída na nahrávání obrázkù, bohužel nìjak nefunguje a hází null pointer, každopádnì nièemu nevadí když ho tu necham...
 	
 	private BufferedImage image;
 	
 	
 	public BufferedImage loadImage(File f) {
-		
+		f=new File("level.png");
 		
 		try {
 			image = ImageIO.read(f);

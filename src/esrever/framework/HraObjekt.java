@@ -2,7 +2,6 @@ package esrever.framework;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.geom.Ellipse2D;
 import java.util.LinkedList;
 
 public abstract class HraObjekt {								//Tøída na inicializaci jednotlivých objektù
@@ -12,6 +11,7 @@ public abstract class HraObjekt {								//Tøída na inicializaci jednotlivých ob
 	protected ObjektID id;
 	protected boolean falling = false;
 	protected boolean jumping = true;
+	protected int monsterCount;
 	
 	public HraObjekt(float x, float y, ObjektID id) {
 		this.x=x;

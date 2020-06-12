@@ -2,7 +2,7 @@ package esrever;
 
 import esrever.framework.HraObjekt;
 
-public class Kamera{						//Tøída kamera, zajišující pohyb kamery s hráèem, díky èemu není velikost levelu omezen podle velikost rozlišení
+public class Kamera{						//Tøída kamera, zajišující pohyb kamery s hráèem, díky èemu není velikost levelu omezen podle velikost rozlišení okna
 	
 	private float x,y;
 	

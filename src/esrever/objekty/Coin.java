@@ -4,29 +4,27 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
-
-import esrever.Hra;
 import esrever.framework.HraObjekt;
 import esrever.framework.ObjektID;
-import esrever.framework.Texture;
 
-public class Coin extends HraObjekt{
+public class Coin extends HraObjekt{				//Tøída na Objekt (Coin)
 	
-	Texture tex = Hra.getInstance();
-	private int type;
 	
 	public Coin(float x, float y, ObjektID id) {
 		super(x, y, id);
 		
 	}
 	
-	public void tick(LinkedList<HraObjekt> object) {
+	public void tick(LinkedList<HraObjekt> object) {				//Z dùvodù vysvìtlených v dokumentaci jsem udìlal "Pixer art" aby coina vypadala malinko lépe.
 		
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.PINK);
-		g.drawRect((int)x+10, (int)y+10, 20, 20);
+		g.setColor(Color.YELLOW);
+		g.fillRect((int)x+10, (int)y+10, 20, 20);
+		g.setColor(Color.BLACK);
+		g.drawRect((int)x+15, (int)y+15, 10, 10);
+		g.drawRect((int)x+15, (int)y+15, 9, 9);
 	}
 
 	
